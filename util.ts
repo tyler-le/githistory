@@ -57,7 +57,24 @@ export const stringToAsciiArt = (str: string) => {
 };
 
 export const stringToDates = (year: number, str: string) => {
-  let sunday = firstSunday(year);
+  const sunday = firstSunday(year);
+  const dates: Date[] = [];
+  for (let chr of str) {
+    chr = chr.toUpperCase();
+    if (chr === " ") {
+      sunday.setDate(sunday.getDate() + 7 * 2);
+      continue;
+    }
+    const char = chars[chr as keyof typeof chars];
+    const width = Math.floor(char[char.length - 1] / 7 + 1);
+    for (const day of char) {
+      const date = new Date(sunday.getTime());
+      date.setDate(date.getDate() + day);
+      dates.push(date);
+    }
+    sunday.setDate(sunday.getDate() + (width + 1) * 7);
+  }
+  return dates;
 };
 
 export const firstSunday = (year: number) => {
