@@ -1,12 +1,9 @@
 import { execSync } from "child_process";
 import { stringToAsciiArt, stringToDates } from "./util";
-console.log(stringToAsciiArt("abcdefghij"));
-console.log(stringToAsciiArt("klmnopqrs"));
-console.log(stringToAsciiArt("tuvwxyz"));
 
-console.log(stringToAsciiArt("TOO  EASY"));
+console.log(stringToAsciiArt("HI  WORLD"));
 
-const dates = stringToDates(2018, "TOO  EASY");
+const dates = stringToDates(2018, "HI  WORLD");
 console.log(dates);
 
 for (const date of dates) {
